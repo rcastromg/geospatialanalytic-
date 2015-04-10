@@ -1,0 +1,24 @@
+C:\Python\myprojects\NASA>python getColors.py
+Results of Color Analysis
+=========================
+Picture name is:  C:/GISdata/images/patagonia_amo_2010355_lrg.jpg
+found light blue algae count: 1312949
+number of total pixel is 11414592
+mumber of light blue pixel is 1312949
+percentage is 11.5
+Distance South-West (KM): 2695.12896028
+Distance South-Nort (KM): 2224.59666459
+Distance West-East (KM): 1897.39918166
+Area of Picture): 4220947.891
+Alagae coverage in light blue-green measured on picture in KM2: 485509.19
+Total of Oxygen produced per cubic meters is: 366.67
+Alagae maximum depth from sea level in meters is: 100
+Atlantic Ecosystem - Daily O2 Emission to Athmosphere in GigaTons (Volume Liters
+): 154768.089
+Atlantic Ecosystem - Daily O2 Emission to Athmosphere in GigaTons (Mass): 4952.5
+79
+Total mass of Earth atmosphere (kg): 5.1e+19
+Total mass of Earth Oxygen (kg): 1.071e+19
+Total mass of Earth Oxygen (giga tons mass): 10710000.0
+Total days required to charge Oxygen into athmosphere: 2162
+Total years required to charge Oxygen into athmosphere: 6.0

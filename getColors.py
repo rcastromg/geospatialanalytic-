@@ -1,11 +1,41 @@
 # -*- coding: UTF-8 -*-
 # Author: Claude Falbriard
-# Date:  April. 08 2015
+# Email:  falbriard@aol.com 
+# Date:  April. 10 2015
 # NASA Space Apps Contest
+# install instructios
+# to install the PIL image processing package, run the command: pip instal PIL at command level
+# or access the PIL product page at: http://www.pythonware.com/products/pil/ for executables
+# also install Python requests package with: pip install Requests
+# see documentation at:  http://docs.python-requests.org/en/latest/
 from math import cos 
 from PIL import Image
 from collections import defaultdict
 import math
+# for image download, use requests
+import requests
+import sys
+import time
+
+def downloadFile(url, directory) :
+    localFilename = url.split('/')[-1]
+    with open(directory + '/' + localFilename, 'wb') as f:
+        start = time.clock()
+        r = requests.get(url, stream=True)
+        total_length = r.headers.get('content-length')
+        print "total_length = " + str(total_length) 
+        total_length = int(total_length)
+        dl = 0
+        if total_length is None: # no content length header
+            f.write(r.content)
+        else:
+            for chunk in r.iter_content(1024):
+                dl += len(chunk)
+                f.write(chunk)
+                done = int(50 * dl / total_length)
+                sys.stdout.write("\r[%s%s] %s bps" % ('=' * done, ' ' * (50-done), dl//(time.clock() - start)))
+                print ''
+    return (time.clock() - start)
  
 def distance_on_unit_sphere(lat1, long1, lat2, long2):
  
@@ -28,8 +58,13 @@ def distance_on_unit_sphere(lat1, long1, lat2, long2):
     return arc
     
 # image source from URL link:  http://visibleearth.nasa.gov/view.php?id=48244  
-# hight resolution image location:  http://eoimages.gsfc.nasa.gov/images/imagerecords/48000/48244/patagonia_amo_2010355_lrg.jpg
-im = Image.open("C:/GISdata/images/patagonia_amo_2010355_lrg.jpg")
+# fetch the hight resolution image location:  http://eoimages.gsfc.nasa.gov/images/imagerecords/48000/48244/patagonia_amo_2010355_lrg.jpg
+url = 'http://eoimages.gsfc.nasa.gov/images/imagerecords/48000/48244/patagonia_amo_2010355_lrg.jpg'
+time_elapsed = downloadFile(url, './')
+localFilename = url.split('/')[-1]
+im = Image.open('./' + localFilename)
+#im = Image.open("C:/GISdata/images/patagonia_amo_2010355_lrg.jpg")
+# other similar pictures as research reference 
 #im = Image.open("C:/GISdata/images/RioPlata_S2002118_lrg.jpg")
 #im = Image.open("C:/GISdata/images/Malvinas.OSW_dec62004.jpg")
 from collections import defaultdict
