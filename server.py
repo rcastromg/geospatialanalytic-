@@ -4,6 +4,7 @@
 # server for BlueMix  
 # author:  Claude Falbriard 
 # date:    Apr. 11 2015
+# version: 1.2 
 # purpose:  mini-web app 
 # desined for Internet domain: spaceappsalgae.mybluemix.net
 # hosted by IBM Bluemix

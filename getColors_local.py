@@ -59,11 +59,11 @@ def distance_on_unit_sphere(lat1, long1, lat2, long2):
     
 # image source from URL link:  http://visibleearth.nasa.gov/view.php?id=48244  
 # fetch the hight resolution image location:  http://eoimages.gsfc.nasa.gov/images/imagerecords/48000/48244/patagonia_amo_2010355_lrg.jpg
-url = 'http://eoimages.gsfc.nasa.gov/images/imagerecords/48000/48244/patagonia_amo_2010355_lrg.jpg'
-time_elapsed = downloadFile(url, './')
-localFilename = url.split('/')[-1]
-im = Image.open('./' + localFilename)
-# im = Image.open("C:/GISdata/images/patagonia_amo_2010355_lrg.jpg")
+#url = 'http://eoimages.gsfc.nasa.gov/images/imagerecords/48000/48244/patagonia_amo_2010355_lrg.jpg'
+#time_elapsed = downloadFile(url, './')
+#localFilename = url.split('/')[-1]
+#im = Image.open('./' + localFilename)
+im = Image.open("C:/GISdata/images/patagonia_amo_2010355_lrg.jpg")
 # other similar pictures as research reference 
 #im = Image.open("C:/GISdata/images/RioPlata_S2002118_lrg.jpg")
 #im = Image.open("C:/GISdata/images/Malvinas.OSW_dec62004.jpg")
@@ -82,10 +82,10 @@ for pixel in im.getdata():
 p = 100.0 * light_blue / pixelcount  
 print "Results of Color Analysis\n========================="
 print "Picture name is:  " + str(im.filename)
-print "found light blue algae count: " +  str(light_blue)     
-print "number of total pixel is " +  str(pixelcount)
-print "mumber of light blue pixel is " +  str(light_blue)
-print "percentage is " +  str(round(p,2))
+print "Found light blue algae count: " +  str(light_blue)     
+print "Number of total pixel is " +  str(pixelcount)
+print "Number of light blue pixel is " +  str(light_blue)
+print "Percentage is " +  str(round(p,2))
 # Calculate distance for Patagonia picture
 lllat = -56
 lllon = -75.58
@@ -101,17 +101,13 @@ print "Distance South-West (KM): " + str(distance1)
 #
 lon1 = lllon; lat1 = lllat; lon2 = ullon ; lat2 = ullat
 distance2 = distance_on_unit_sphere(lat1, lon1, lat2, lon2) * 6373
-print "Distance South-Nort (KM): " + str(distance2)
+print "Distance South-North (KM): " + str(distance2)
 #
 lon1 = ullon; lat1 = ullat; lon2 = urlon ; lat2 = urlat
 distance3 = distance_on_unit_sphere(lat1, lon1, lat2, lon2) * 6373
 print "Distance West-East (KM): " + str(distance3)
-# calculate area of triange
-#areat = 0.5 * distance1 * distance2
-#print "Area of Triangle South-North-West (KM2): " + str(areat)
-#areap = areat * 2
 areap = distance2 * distance3
-print "Area of Picture): " + str(round(areap,3))
+print "Area of Picture: " + str(round(areap,3))
 # Algae coverage un km2 
 algae_km2 = round((areap * p / 100),3)
 print "Alagae coverage in light blue-green measured on picture in KM2: " + str(algae_km2)
@@ -148,7 +144,7 @@ total_mass_kg = 5.1 * 10e18
 print "Total mass of Earth atmosphere (kg): "  + str(round(total_mass_kg,2)) 
 # oxygen = 21% of athmosphere  
 total_oxygen = total_mass_kg * 0.21  
-print "Total mass of Earth Oxygen (kg): "  + str(total_oxygen) 
+print "Total mass of Earth Oxygen only (kg): "  + str(total_oxygen) 
 total_o2_gigatonsmass_earth = round((total_oxygen / 1000.0 / 1000.0 / 1000.0 / 1000.0),3)
 print "Total mass of Earth Oxygen (giga tons mass): "  + str(total_o2_gigatonsmass_earth) 
 # count days to charge all athmosphere with O2 
