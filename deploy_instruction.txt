@@ -1,0 +1,16 @@
+cf api https://ng.bluemix.net
+cf login 
+xxxxx@br.xxx.com
+
+cf stop spaceappsalgae
+
+cf push spaceappsalgae -m 64M -b "https://github.com/cloudfoundry/cf-buildpack-python.git#v1.1.2" -c "python server.py"
+
+access URI: 
+-----------
+spaceappsalgae.mybluemix.net
+
+cf logs spaceappsalgae --recent
+
+cf logs bridgeIOT1 --recent
+
