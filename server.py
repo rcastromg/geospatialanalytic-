@@ -3,8 +3,8 @@
 # NASA Space Apps
 # server for BlueMix  
 # author:  Claude Falbriard 
-# date:    Apr. 11 2015
-# version: 1.4 
+# date:    Apr. 12 2015
+# version: 1.5 
 # purpose:  mini-web app 
 # desined for Internet domain: spaceappsalgae.mybluemix.net
 # hosted by IBM Bluemix
@@ -100,4 +100,4 @@ Front Page Access Count: """ + str(frontpage_count)  + "<br><br>" \
 # To execute under the Bluemix, use      
 run(host=HOST, port=PORT)
 # to execute under localhost
-# run(host='localhost', port=8080)
+#run(host='localhost', port=8080)
