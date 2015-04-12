@@ -1,6 +1,5 @@
-cf api https://ng.bluemix.net
-cf login 
-xxxxx@br.xxx.com
+cf login -a https://api.ng.bluemix.net -s dev
+xxxxxx@xx.ibm.com
 
 cf stop spaceappsalgae
 
@@ -12,5 +11,6 @@ spaceappsalgae.mybluemix.net
 
 cf logs spaceappsalgae --recent
 
-cf logs bridgeIOT1 --recent
+SPOCK "Once you have eliminated the impossible, whatever remains, however improbable, must be the truth."
+
 
