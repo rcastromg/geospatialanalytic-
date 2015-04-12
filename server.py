@@ -4,7 +4,7 @@
 # server for BlueMix  
 # author:  Claude Falbriard 
 # date:    Apr. 11 2015
-# version: 1.2 
+# version: 1.4 
 # purpose:  mini-web app 
 # desined for Internet domain: spaceappsalgae.mybluemix.net
 # hosted by IBM Bluemix
@@ -19,6 +19,12 @@ import os
 #from http.client import HTTPSConnection for Python 3
 from httplib import HTTPSConnection # for Python 2.7
 from base64 import b64encode
+# reset page counters
+global frontpage_count
+frontpage_count = 0
+global staticpage_count
+staticpage_count = 0
+#
 code = '' 
 # access with http://localhost:8080/static/index.html
 global mypath
@@ -33,24 +39,65 @@ print "Bluemix dynamic port URI used by route: " + str(PORT)
 #
 @route('/')
 def root():
+    global frontpage_count	
+    frontpage_count += 1	
     return static_file('/index.html', root=mypath)
 #@route('/index.html')
 #def frontpage():
 #    return static_file('/index.html', root=mypath)  
 @route('/static/<filename>')
 def server_static(filename):
+    global staticpage_count	
+    staticpage_count += 1	
     global mypath	
     return static_file(filename, root=mypath)
 @route('/images/<filename>')
 def images_static(filename):
     global mypath	
     return static_file(filename, root=mypath + "/images")
-# URI to test    
-#https://oauthaqua1.mybluemix.net/resources/oauth2Callback?code=x...x  
-#http://localhost:8080/resources/oauth2Callback?code=x...x
-# test it with initial Web request: 
-# https://idaas.ng.bluemix.net/sps/oauth20sp/oauth20/authorize?client_id=BukWRqSkD0qbO5ooesHU&response_type=code&scope=profile&redirect_uri=https://oauthaqua1.mybluemix.net/resources/oauth2Callback&requestedAuthnPolicy=http://www.ibm.com/idaas/authnpolicy/basic
+@route('/statistics')
+def statistics():
+    global frontpage_count
+    global staticpage_count    
+    statpage = """
+<HTML>
+<HEAD>
+<style> 
+@font-face {
+    font-family:"Jalane";
+    src: url("/static/jalane_light.ttf") /* TTF file for CSS3 browsers */
+}
+p {
+font-family:'Jalane', sans-serif;
+font-size: 18px;
+font-weight:bold;
+color:white;
+margin-left:20px;
+margin-bottom:30px;
+text-decoration: none;
+a:link {color:white;};      /* unvisited link */
+a:visited {color:white !important;};  /* visited link */
+a:hover {color:white !important;};  /* mouse over link */
+a:active {color:white;};
+}
+</style>
+</HEAD>
+<BODY bgcolor="1a1a1a" vlink="#c0c0c0" alink="#c0c0c0" link="#c0c0c0" text="#c0c0c0">
+<style type="text/css">
+    a:link { text-decoration:none; color: white;}
+    a:hover { color: white;}
+    a:visited { color: white; }
+</style>
+<text> 
+<br><br>
+Traffic Statistics for Space Apps Algae Web Site<br><br>
+
+Front Page Access Count: """ + str(frontpage_count)  + "<br><br>" \
+    "Static Page Access Count:  " + str(staticpage_count) + "<br><br>" + \
+    "or contact Web Page Admin at e-mail: falbriard@aol.com<br><br>" + \
+    "</text></BODY></HTML>"
+    return statpage    
 # To execute under the Bluemix, use      
 run(host=HOST, port=PORT)
 # to execute under localhost
-#run(host='localhost', port=8080)
+# run(host='localhost', port=8080)
